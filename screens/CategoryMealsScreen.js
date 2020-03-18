@@ -1,46 +1,58 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 
-import {CATEGORIES} from '../data/dummy-data';
+import {CATEGORIES, MEALS} from '../data/dummy-data';
 
+import MealItem from '../components/MealItem';
 import Colors from '../constants/Colors';
 
 
 const CategoryMealsScreen = (props) => {
 	const cid = props.navigation.getParam('categoryId');
-	const selectedCategory = CATEGORIES.find(cat => cat.id === cid);
+	const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(cid) >= 0);
+
+	const renderMealItem = (itemData) => {
+		return (
+			<MealItem title={itemData.item.title} 
+			image={itemData.item.imageURL}
+			onSelectMeal={() => {}} 
+			duration={itemData.item.duration}
+			complexity={itemData.item.complexity}
+			affordability={itemData.item.affordability}
+
+			/>
+		);
+	}
+
 	return (
 		<View style={styles.screen}>
-			<Text>Category Meals Screen</Text>
-			<Text>{selectedCategory.title}</Text>
-			<Button title="next" onPress={() => props.navigation.push("MealDetails")}/>
-			<Button title="back" onPress={() => props.navigation.pop()} />
+			<FlatList 
+				keyExtractor = {(item, index) => item.id}
+				data = {displayedMeals}
+				renderItem = {renderMealItem}
+				style = {{width: '100%'}}
+				/>
 		</View>
 	);
 }
 
-// CategoryMealsScreen.navigationOption = (navigationData) => {
-// 	const cid = navigationData.navigation.getParam('categoryId');
-// 	console.log(cid);
-// 	const selectedCategory = CATEGORIES.find(cat => cat.id === cid);
-// 	return {
-// 		headerTitle: selectedCategory.title,
+ CategoryMealsScreen.navigationOptions = (navigationData) => {
+	const cid = navigationData.navigation.getParam('categoryId');
+	const selectedCategory = CATEGORIES.find(cat => cat.id === cid);
+	return {
+		headerTitle: selectedCategory.title
+	};
+}
+
+// CategoryMealsScreen.navigationOptions = (navigationData) => {
+// 	return ({
+// 		headerTitle: navigationData.navigation.getParam('categoryTitle'),
 // 		headerTintColor: 'white',
 // 		headerStyle: {
 // 			backgroundColor: Colors.primaryColor,
 // 		}
-// 	};
-// }
-
-CategoryMealsScreen.navigationOptions = (navigationData) => {
-	return ({
-		headerTitle: navigationData.navigation.getParam('categoryTitle'),
-		headerTintColor: 'white',
-		headerStyle: {
-			backgroundColor: Colors.primaryColor,
-		}
-	});
-};
+// 	});
+// };
 
 const styles = StyleSheet.create({
 	screen: {

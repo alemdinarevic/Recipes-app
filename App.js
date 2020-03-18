@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { useScreens } from 'react-native-screens';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
 import MealsNavigator from './navigation/MealsNavigator';
+
+useScreens();
 
 const fetchFonts = () => {
   Font.loadASync({
@@ -15,7 +17,7 @@ const fetchFonts = () => {
 
 export default function App() {
 
-  [fontsLoaded, setFontsLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if(!fontsLoaded) {
     return (
@@ -34,10 +36,4 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
 });
