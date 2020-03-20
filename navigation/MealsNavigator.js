@@ -12,8 +12,16 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import FiltersScreen from '../screens/FiltersScreen';
 
 import Colors from '../constants/Colors';
+
+const defaultStackNavigatorOptions = {
+	headerStyle: {
+		backgroundColor: Colors.primaryColor
+	},
+	headerTintColor: 'white',	
+}
 
 
 const MealsNavigator = createStackNavigator({
@@ -32,12 +40,7 @@ const MealsNavigator = createStackNavigator({
 	}
 	}, {
 		//mode: 'modal',
-		defaultNavigationOptions: {
-			headerTintColor: 'white',
-				headerStyle: {
-					backgroundColor: Colors.primaryColor
-				}
-			}
+		defaultNavigationOptions: defaultStackNavigatorOptions
 		}
 );
 
@@ -46,12 +49,7 @@ const FavNavigator = createStackNavigator({
 	MealDetails: MealDetailsScreen
 }, {
 	//mode: 'modal',
-	defaultNavigationOptions: {
-		headerTintColor: 'white',
-			headerStyle: {
-				backgroundColor: Colors.primaryColor
-			}
-		}
+	defaultNavigationOptions: defaultStackNavigatorOptions
 	});
 
 const MealFavoritesNavigator = createBottomTabNavigator({
@@ -74,4 +72,23 @@ const MealFavoritesNavigator = createBottomTabNavigator({
 	}
 });
 
-export default createAppContainer(MealFavoritesNavigator);
+const FiltersNavigator = createStackNavigator({
+	Filters: FiltersScreen
+}, {
+	//mode: 'modal',
+	// navigationOptions: {
+	// 	drawerLabel: 'Filters'
+	// },
+	defaultNavigationOptions: defaultStackNavigatorOptions
+	});
+
+const mainNavigator = createDrawerNavigator({
+	Categories: MealFavoritesNavigator,
+	Filters: FiltersNavigator
+}, {
+	contentOptions: {
+		activeTintColor: Colors.secondaryColor,
+	}
+});
+
+export default createAppContainer(mainNavigator);

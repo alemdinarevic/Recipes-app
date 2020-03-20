@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { useScreens } from 'react-native-screens';
+import { Text, View } from 'react-native';
+import { useScreens, enableScreens } from 'react-native-screens';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
 import MealsNavigator from './navigation/MealsNavigator';
 
-useScreens();
+enableScreens();
 
 const fetchFonts = () => {
   Font.loadASync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
-}
+};
 
 export default function App() {
 
@@ -35,5 +35,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-});
