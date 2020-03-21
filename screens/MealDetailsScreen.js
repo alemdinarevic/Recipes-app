@@ -15,10 +15,17 @@ const ListItem = props => {
 	);
 }
 
+
+
 const MealDetailsScreen = (props) => {
 
 	const mealId = props.navigation.getParam('mealId');
 	const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
+	const renderMealIngredients = (items) =>{
+		// return (selectedMeal.ingredients.map(ingredient => <Text key={ingredient}>{ingredient}</Text>));
+		return(<Text style={styles.ListItem}>{items.item}</Text>)
+	}
 
 	return (
 		<ScrollView>
@@ -31,18 +38,20 @@ const MealDetailsScreen = (props) => {
 			</View>
 
 			<Text style={styles.headingTitle}>Ingredients</Text>
-				{selectedMeal.ingredients.map(ingredient => 
+			
+			<FlatList data={selectedMeal.ingredients} renderItem={renderMealIngredients}/>
+				{/* {selectedMeal.ingredients.map(ingredient => 
 					<ListItem key={ingredient} style={styles.ingredients}>
 						{ingredient}
 					</ListItem>)
-				}
+				} */}
 
 			<Text style={styles.headingTitle}>Steps</Text>
-				{selectedMeal.steps.map(step => 
+				{/* {selectedMeal.steps.map(step => 
 					<ListItem key={step} style={styles.ingredients}>
 						{step}
 					</ListItem>)
-				}
+				} */}
 
 			<View style={styles.screen}>
 				<Button title="back to categories" onPress={() => props.navigation.popToTop("Categories")}/>
@@ -80,6 +89,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		padding: 15,
 		justifyContent: 'space-around'
+	},
+	ingr: {
+		flexDirection: 'column'
 	},
 	headingTitle: {
 		fontSize: 22,
