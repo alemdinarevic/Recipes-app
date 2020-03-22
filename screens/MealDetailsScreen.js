@@ -22,7 +22,7 @@ const MealDetailsScreen = (props) => {
 	const mealId = props.navigation.getParam('mealId');
 	const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
-	const renderMealIngredients = (items) =>{
+	const renderMealDetails = (items) =>{
 		// return (selectedMeal.ingredients.map(ingredient => <Text key={ingredient}>{ingredient}</Text>));
 		return(<Text style={styles.ListItem}>{items.item}</Text>)
 	}
@@ -39,7 +39,7 @@ const MealDetailsScreen = (props) => {
 
 			<Text style={styles.headingTitle}>Ingredients</Text>
 			
-			<FlatList data={selectedMeal.ingredients} renderItem={renderMealIngredients}/>
+			<FlatList data={selectedMeal.ingredients} renderItem={renderMealDetails}/>
 				{/* {selectedMeal.ingredients.map(ingredient => 
 					<ListItem key={ingredient} style={styles.ingredients}>
 						{ingredient}
@@ -47,6 +47,7 @@ const MealDetailsScreen = (props) => {
 				} */}
 
 			<Text style={styles.headingTitle}>Steps</Text>
+			<FlatList data={selectedMeal.steps} renderItem={renderMealDetails}/>
 				{/* {selectedMeal.steps.map(step => 
 					<ListItem key={step} style={styles.ingredients}>
 						{step}

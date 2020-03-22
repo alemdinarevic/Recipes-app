@@ -20,9 +20,8 @@ const defaultStackNavigatorOptions = {
 	headerStyle: {
 		backgroundColor: Colors.primaryColor
 	},
-	headerTintColor: 'white',	
+	headerTintColor: 'white'
 }
-
 
 const MealsNavigator = createStackNavigator({
 	Categories: {
