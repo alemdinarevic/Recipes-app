@@ -42,11 +42,13 @@ const CategoriesScreen = (props) => {
 
 CategoriesScreen.navigationOptions = (navData) => {
 	return {
-	headerLeft: <HeaderButtons HeaderButtonComponent={HeaderButton}>
-		<Item title='menu' iconName='ios-menu' onPress={() => {
-			navData.navigation.toggleDrawer();
-		}} />
-	</HeaderButtons>
+		headerLeft: () => (
+			<HeaderButtons HeaderButtonComponent={HeaderButton}>
+				<Item title='menu' iconName='ios-menu' onPress={() => {
+					navData.navigation.toggleDrawer();
+				}} />
+			</HeaderButtons>
+		)
 	};
 }
 
