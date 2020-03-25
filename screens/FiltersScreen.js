@@ -50,10 +50,6 @@ const FiltersScreen = props => {
 		navigation.setParams({save: saveFilters});
 	}, [saveFilters]);
 
-	
-
-	
-	// const [isGlutenFree, setIsGlutenFree] = useState(false);
 	return (
 		<View style={styles.screen}>
 			<Text style={styles.headingTitle}>Available filters</Text>
@@ -100,7 +96,7 @@ FiltersScreen.navigationOptions = (navData) => {
 
 const styles = StyleSheet.create({
     screen: {
-			flex: 1,
+		flex: 1,
    		alignItems: 'center'
 		},
 		headingTitle: {

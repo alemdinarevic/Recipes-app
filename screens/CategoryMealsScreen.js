@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import { CATEGORIES } from '../data/dummy-data';
 
 import MealList from '../components/MealList';
-import Colors from '../constants/Colors';
-
 
 const CategoryMealsScreen = (props) => {
 	const cid = props.navigation.getParam('categoryId');

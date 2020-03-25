@@ -49,7 +49,7 @@ const MealDetailsScreen = (props) => {
 	const renderMealDetails = (items) =>{
 		// return (selectedMeal.ingredients.map(ingredient => <Text key={ingredient}>{ingredient}</Text>));
 		return(
-			<View>
+			<View style={styles.listItemContainer}>
 				<Text style={styles.listItem}>{items.item}</Text>
 			</View>
 		)
@@ -128,10 +128,12 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 		padding: 10, 
 		alignItems: 'center',
-		justifyContent: 'center',
-		borderWidth: 1,
-		borderColor: 'white'
+		justifyContent: 'center'
 	},
+	listItemContainer: {
+		borderBottomWidth: 1,
+		borderColor: "black"
+	}
 });
 
 export default MealDetailsScreen;
