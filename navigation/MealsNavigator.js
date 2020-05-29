@@ -13,6 +13,7 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
+import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 
 import Colors from '../constants/Colors';
 
@@ -45,7 +46,8 @@ const MealsNavigator = createStackNavigator({
 
 const FavNavigator = createStackNavigator({
 	Favorites: FavoritesScreen,
-	MealDetails: MealDetailsScreen
+	MealDetails: MealDetailsScreen,
+	OrderDetails: OrderDetailsScreen
 }, {
 	//mode: 'modal',
 	defaultNavigationOptions: defaultStackNavigatorOptions
@@ -64,7 +66,7 @@ const MealFavoritesNavigator = createBottomTabNavigator({
 			tabBarLabel: 'Favorites!',
 			tabBarIcon: (tabInfo) => {return <Ionicons name='ios-star' size={22} color={tabInfo.tintColor}/>}
 		}
-	}
+	},
 }, {
 	tabBarOptions: {
 		activeTintColor: Colors.secondaryColor
@@ -72,7 +74,8 @@ const MealFavoritesNavigator = createBottomTabNavigator({
 });
 
 const FiltersNavigator = createStackNavigator({
-	Filters: FiltersScreen
+	Filters: FiltersScreen,
+
 }, {
 	//mode: 'modal',
 	// navigationOptions: {
